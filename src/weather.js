@@ -32,7 +32,7 @@ const createWeatherEmbed = (
 // Funzione per ottenere i dati meteo
 async function getWeather(cityName) {
     const apiKey = process.env.WEATHER_API; // Assicuriamoci che la chiave sia configurata come variabile d'ambiente
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=it&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},IT&units=metric&lang=it&appid=${apiKey}`;
 
     try {
         const response = await axios.get(apiUrl);
