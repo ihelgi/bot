@@ -102,5 +102,3 @@ client.on('interactionCreate', (interaction) => {
 });
 
 client.login(process.env.TOKEN);
-
-console.log("TOKEN:", process.env.TOKEN);
