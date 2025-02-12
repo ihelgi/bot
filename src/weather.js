@@ -35,7 +35,15 @@ async function getWeather(cityName) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},IT&units=metric&lang=it&appid=${apiKey}`;
 
     try {
-        const response = await axios.get(apiUrl);
+        // Prima prova con l'Italia
+        let response = await axios.get(apiUrl);
+        
+        // Se la città non è trovata, prova senza specificare il paese
+        if (response.data.cod === '404') {
+            apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=it&appid=${apiKey}`;
+            response = await axios.get(apiUrl);
+        }
+
         const data = response.data;
 
         const currentTemp = Math.ceil(data.main.temp);  // Arrotondamento
