@@ -46,7 +46,9 @@ client.on('messageCreate', async (message) => {
         const question = message.content.slice(9).trim(); 
         
         // Debug per vedere cosa succede con la domanda
-        console.log('Domanda:', question); 
+        console.log('Domanda:', question);
+        console.log('Lunghezza messaggio originale:', message.content.length);
+        console.log('Lunghezza della domanda:', question.length);
     
         if (question) {
             await handleAICommand(message, question); // Passa la domanda alla funzione
