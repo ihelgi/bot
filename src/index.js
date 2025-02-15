@@ -42,8 +42,8 @@ client.on('messageCreate', async (message) => {
     }
 
     // Comando AI
-    if (message.content.startsWith('ai ')) {
-        await handleAICommand(message);
+    if (message.content.trim().endsWith('?')) {
+        await handleAICommand(message, message.content.trim());
     }
 
     if (message.content === 'ping') {
