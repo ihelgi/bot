@@ -3,6 +3,7 @@ const { Client, IntentsBitField, ActivityType, GatewayIntentBits, EmbedBuilder }
 const { handleWeatherCommand } = require('./weather');
 const { handleLatencyCommand } = require('./latency');
 const { handleExchangeRateCommand } = require('./currency');
+const { handleAICommand } = require('./ai');
 
 const client = new Client({
     intents: [
@@ -38,6 +39,11 @@ client.on('messageCreate', async (message) => {
 
     if (message.content.startsWith('cambio')) {
         await handleExchangeRateCommand(message);
+    }
+
+    // Comando AI
+    if (message.content.startsWith('ai ')) {
+        await handleAICommand(message);
     }
 
     if (message.content === 'ping') {
