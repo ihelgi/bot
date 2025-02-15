@@ -4,7 +4,7 @@ async function handleAICommand(message) {
     try {
         const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
     model: "mistralai/Mistral-7B-Instruct-v0.1",
-    messages: [{ role: "user", content: "non elia" }],
+    messages: [{ role: "user", content: "oi" }],
     max_tokens: 100,
 }, {
     headers: {

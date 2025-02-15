@@ -41,20 +41,9 @@ client.on('messageCreate', async (message) => {
         await handleExchangeRateCommand(message);
     }
 
-    if (message.content.startsWith('non elia ')) {
-        // Rimuove 'non elia ' (9 caratteri) e tutto ciò che viene dopo, lasciando solo la domanda
-        const question = message.content.slice(9).trim(); 
-        
-        // Debug per vedere cosa succede con la domanda
-        console.log('Domanda:', question);
-        console.log('Lunghezza messaggio originale:', message.content.length);
-        console.log('Lunghezza della domanda:', question.length);
-    
-        if (question) {
-            await handleAICommand(message, question); // Passa la domanda alla funzione
-        } else {
-            message.reply("Devi scrivere una domanda dopo 'non elia'.");
-        }
+    // Comando AI
+    if (message.content.startsWith('oi ')) {
+        await handleAICommand(message);
     }
 
     if (message.content === 'ping') {
