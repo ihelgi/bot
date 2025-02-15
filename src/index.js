@@ -43,9 +43,13 @@ client.on('messageCreate', async (message) => {
 
     if (message.content.startsWith('non elia ')) {
         const question = message.content.slice(9).trim(); // Rimuove 'non elia ' e lascia la domanda
-        await handleAICommand(message, question); // Passa solo la domanda alla funzione
+        console.log('Domanda:', question); // Debug: stampa la domanda
+        if (question) {
+            await handleAICommand(message, question); // Passa solo la domanda alla funzione
+        } else {
+            message.reply("Devi scrivere una domanda dopo 'non elia'.");
+        }
     }
-
     if (message.content === 'ping') {
       message.reply('pong');
     }
