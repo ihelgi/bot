@@ -83,9 +83,10 @@ client.on('messageCreate', async (message) => {
         .setTitle("Ludovica Mascarino")
         .setDescription("Conosciuta anche con il nome cavità dentale o lidl, è pro gamer di hoyoverse")
         .addFields(
-            { name: 'Data di nascita', value: '42/13/2137', inline: true},
-            { name: 'Luogo di nascita', value: 'Vercelli', inline: true }
+            { name: 'Data di nascita', value: '42/13/2137 (Era un giorno fantastico!)', inline: true},
+            { name: 'Luogo di nascita', value: 'Vercelli (la città dei sogni)', inline: true }
         )
+        .setFooter({ text: "Chi dice che non esistono leggende?" });
         message.channel.send({ embeds: [lud] });
     }
 });
