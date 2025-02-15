@@ -42,7 +42,7 @@ client.on('messageCreate', async (message) => {
     }
 
     // Comando AI
-    if (message.content.startsWith('oi ')) {
+    if (message.content.startsWith('ai ')) {
         await handleAICommand(message);
     }
 
