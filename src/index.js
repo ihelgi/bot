@@ -59,7 +59,7 @@ client.on('messageCreate', async (message) => {
         const khiem = new EmbedBuilder()
         .setColor('Random')
         .setTitle("Khiem Del Giovane")
-        .setDescription("Conosciuto anche con il nome eucaliptopianta o eucalipto, si è ritirato da tutte le competizioni ciclistiche (se ne vanno sempre i migliori")
+        .setDescription("Conosciuto anche con il nome eucaliptopianta o eucalipto, si è ritirato da tutte le competizioni ciclistiche (se ne vanno sempre i migliori)")
         .addFields(
             { name: 'Data di nascita', value: '12/04/1986', inline: true},
             { name: 'Luogo di nascita', value: 'Tor Pignattara', inline: true }
@@ -78,7 +78,7 @@ client.on('messageCreate', async (message) => {
         message.channel.send({ embeds: [trifase] });
     }
     if (message.content === 'lud') {
-        const trifase = new EmbedBuilder()
+        const lud = new EmbedBuilder()
         .setColor('Random')
         .setTitle("Ludovica Mascarino")
         .setDescription("Conosciuta anche con il nome cavità dentale o lidl, è pro gamer di hoyoverse")
