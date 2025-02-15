@@ -41,8 +41,7 @@ client.on('messageCreate', async (message) => {
         await handleExchangeRateCommand(message);
     }
 
-    // Comando AI
-    if (message.content.startsWith('ai ')) {
+    if (message.content.startsWith('non elia')) {
         await handleAICommand(message);
     }
 
