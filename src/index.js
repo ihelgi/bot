@@ -59,13 +59,11 @@ client.on('messageCreate', async (message) => {
         const khiem = new EmbedBuilder()
         .setColor('Random')
         .setTitle("Khiem Del Giovane")
-        .setDescription("Conosciuto anche con il nome eucaliptopianta o eucalipto, va in bici")
+        .setDescription("Conosciuto anche con il nome eucaliptopianta o eucalipto, si è ritirato da tutte le competizioni ciclistiche (se ne vanno sempre i migliori")
         .addFields(
             { name: 'Data di nascita', value: '12/04/1986', inline: true},
             { name: 'Luogo di nascita', value: 'Tor Pignattara', inline: true }
         )
-        .setImage('https://imgur.com/a/oqkUC01')
-
         message.channel.send({ embeds: [khiem] });
     }
     if (message.content === 'trifase') {
@@ -77,8 +75,18 @@ client.on('messageCreate', async (message) => {
             { name: 'Data di nascita', value: '12.5/11/2015', inline: true},
             { name: 'Luogo di nascita', value: 'Busto Arsizio', inline: true }
         )
-
         message.channel.send({ embeds: [trifase] });
+    }
+    if (message.content === 'lud') {
+        const trifase = new EmbedBuilder()
+        .setColor('Random')
+        .setTitle("Ludovica Mascarino")
+        .setDescription("Conosciuta anche con il nome cavità dentale o lidl, è pro gamer di hoyoverse")
+        .addFields(
+            { name: 'Data di nascita', value: '42/13/2137', inline: true},
+            { name: 'Luogo di nascita', value: 'Vercelli', inline: true }
+        )
+        message.channel.send({ embeds: [lud] });
     }
 });
 
