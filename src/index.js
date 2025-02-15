@@ -42,7 +42,8 @@ client.on('messageCreate', async (message) => {
     }
 
     if (message.content.startsWith('non elia ')) {
-        await handleAICommand(message);
+        const question = message.content.slice(9).trim(); // Rimuove 'non elia ' e lascia la domanda
+        await handleAICommand(message, question); // Passa solo la domanda alla funzione
     }
 
     if (message.content === 'ping') {
