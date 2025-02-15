@@ -50,6 +50,7 @@ client.on('messageCreate', async (message) => {
             message.reply("Devi scrivere una domanda dopo 'non elia'.");
         }
     }
+    
     if (message.content === 'ping') {
       message.reply('pong');
     }
