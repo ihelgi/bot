@@ -13,10 +13,23 @@ async function generateTextImage(text) {
     ctx.fillStyle = '#303030';
     ctx.fillRect(0, 0, width, height);
 
+    // Calcolare la larghezza del testo per adattarlo alla canvas
+    let fontSize = 50; // Impostiamo una dimensione di font iniziale
+    ctx.font = `${fontSize}px Inter`;
+
+    // Misurare la larghezza del testo
+    let textWidth = ctx.measureText(text).width;
+
+    // Ridurre la dimensione del font finché il testo non si adatta alla canvas
+    while (textWidth > width - 40) { // 40 per lasciare un po' di margine
+        fontSize -= 2; // Ridurre la dimensione del font
+        ctx.font = `${fontSize}px Inter`;
+        textWidth = ctx.measureText(text).width;
+    }
+
     // Stile del testo
     ctx.fillStyle = '#FFFFFF'; // Testo bianco
-    ctx.font = '50px Inter'; // Cambia il font se necessario
-    ctx.fillText(text, 20, 50); // Disegna il testo
+    ctx.fillText(text, 20, height / 2 + fontSize / 4); // Centra verticalmente il testo
 
     // Convertire in buffer immagine
     const buffer = canvas.toBuffer();
