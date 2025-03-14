@@ -1,9 +1,10 @@
 require('dotenv').config();
-const { Client, IntentsBitField, ActivityType, GatewayIntentBits, EmbedBuilder } = require('discord.js');
-const { handleWeatherCommand } = require('./weather');
-const { handleLatencyCommand } = require('./latency');
-const { handleExchangeRateCommand } = require('./currency');
-const { handleAICommand } = require('./ai');
+const { Client, IntentsBitField, ActivityType, GatewayIntentBits, EmbedBuilder, AttachmentBuilder } = require('discord.js');
+const { handleWeatherCommand } = require('./commands/weather');
+const { handleLatencyCommand } = require('./commands/latency');
+const { handleExchangeRateCommand } = require('./commands/currency');
+const { handleAICommand } = require('./commands/ai');
+const { handleCanvasCommand } = require('./commands/canvas');
 
 const client = new Client({
     intents: [
@@ -39,6 +40,10 @@ client.on('messageCreate', async (message) => {
 
     if (message.content.startsWith('cambio')) {
         await handleExchangeRateCommand(message);
+    }
+
+    if (message.content.endsWith('()')) {
+        await handleCanvasCommand(message);
     }
 
     // Comando AI

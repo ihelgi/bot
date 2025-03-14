@@ -1,0 +1,37 @@
+const { createCanvas, registerFont } = require('canvas');
+const { AttachmentBuilder } = require('discord.js');
+
+// Se vuoi usare un font personalizzato, registralo qui
+// registerFont('path/to/font.ttf', { family: 'CustomFont' });
+
+async function generateTextImage(text) {
+    const width = 500;
+    const height = 100;
+    const canvas = createCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+
+    // Sfondo grigio scuro
+    ctx.fillStyle = '#303030';
+    ctx.fillRect(0, 0, width, height);
+
+    // Stile del testo
+    ctx.fillStyle = '#FFFFFF'; // Testo bianco
+    ctx.font = '30px Arial'; // Cambia il font se necessario
+    ctx.fillText(text, 20, 50); // Disegna il testo
+
+    // Convertire in buffer immagine
+    const buffer = canvas.toBuffer();
+    return new AttachmentBuilder(buffer, { name: 'text.png' });
+}
+
+async function handleCanvasCommand(message) {
+    const text = message.content.replace(/^canvas\s*/, '').trim(); // Rimuove il prefisso comando
+    if (!text) {
+        return message.reply('Devi scrivere qualcosa dopo `canvas`!');
+    }
+
+    const image = await generateTextImage(text);
+    await message.channel.send({ files: [image] });
+}
+
+module.exports = { handleCanvasCommand };
