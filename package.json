@@ -13,7 +13,7 @@
     "@discordjs/rest": "^2.4.2",
     "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.7.9",
-    "canvas": "^2.11.2",
+    "canvas": "^3.1.0",
     "discord-api-types": "^0.37.115",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
