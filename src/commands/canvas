@@ -1,8 +1,7 @@
 const { createCanvas, registerFont } = require('canvas');
 const { AttachmentBuilder } = require('discord.js');
 
-// Se vuoi usare un font personalizzato, registralo qui
-// registerFont('path/to/font.ttf', { family: 'CustomFont' });
+registerFont('./src/fonts/Inter.ttc', { family: 'Inter' });
 
 async function generateTextImage(text) {
     const width = 500;
@@ -16,7 +15,7 @@ async function generateTextImage(text) {
 
     // Stile del testo
     ctx.fillStyle = '#FFFFFF'; // Testo bianco
-    ctx.font = '30px Arial'; // Cambia il font se necessario
+    ctx.font = '50px Inter'; // Cambia il font se necessario
     ctx.fillText(text, 20, 50); // Disegna il testo
 
     // Convertire in buffer immagine
@@ -25,9 +24,9 @@ async function generateTextImage(text) {
 }
 
 async function handleCanvasCommand(message) {
-    const text = message.content.replace(/^canvas\s*/, '').trim(); // Rimuove il prefisso comando
+    const text = message.content.slice(0, -2).trim(); // Rimuove gli ultimi due caratteri "()" dal messaggio
     if (!text) {
-        return message.reply('Devi scrivere qualcosa dopo `canvas`!');
+        return message.reply('Il messaggio è vuoto! Scrivi qualcosa prima di `()`.');
     }
 
     const image = await generateTextImage(text);
