@@ -1,39 +1,33 @@
-const { createCanvas, registerFont } = require('canvas');
+const sharp = require('sharp');
 const { AttachmentBuilder } = require('discord.js');
-
-registerFont('./src/fonts/Inter.ttc', { family: 'Inter' });
 
 async function generateTextImage(text) {
     const width = 500;
     const height = 100;
-    const canvas = createCanvas(width, height);
-    const ctx = canvas.getContext('2d');
+    const fontSize = 50;
+    
+    // Creiamo un'immagine di base con un colore di sfondo grigio scuro
+    const image = await sharp({
+        create: {
+            width: width,
+            height: height,
+            channels: 4,
+            background: { r: 48, g: 48, b: 48, alpha: 1 }, // Grigio scuro
+        }
+    })
+    .png() // Salviamo l'immagine come PNG
+    .composite([{
+        input: Buffer.from(`
+        <svg width="${width}" height="${height}">
+            <text x="20" y="${height / 2 + fontSize / 4}" font-family="Inter" font-size="${fontSize}" fill="white">${text}</text>
+        </svg>
+        `),
+        gravity: 'center',
+    }])
+    .toBuffer();
 
-    // Sfondo grigio scuro
-    ctx.fillStyle = '#303030';
-    ctx.fillRect(0, 0, width, height);
-
-    // Calcolare la larghezza del testo per adattarlo alla canvas
-    let fontSize = 50; // Impostiamo una dimensione di font iniziale
-    ctx.font = `${fontSize}px Inter`;
-
-    // Misurare la larghezza del testo
-    let textWidth = ctx.measureText(text).width;
-
-    // Ridurre la dimensione del font finché il testo non si adatta alla canvas
-    while (textWidth > width - 40) { // 40 per lasciare un po' di margine
-        fontSize -= 2; // Ridurre la dimensione del font
-        ctx.font = `${fontSize}px Inter`;
-        textWidth = ctx.measureText(text).width;
-    }
-
-    // Stile del testo
-    ctx.fillStyle = '#FFFFFF'; // Testo bianco
-    ctx.fillText(text, 20, height / 2 + fontSize / 4); // Centra verticalmente il testo
-
-    // Convertire in buffer immagine
-    const buffer = canvas.toBuffer();
-    return new AttachmentBuilder(buffer, { name: 'text.png' });
+    // Creiamo l'Attachment da inviare su Discord
+    return new AttachmentBuilder(image, { name: 'text.png' });
 }
 
 async function handleCanvasCommand(message) {
