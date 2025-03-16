@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "apt-get update && apt-get install -y libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -14,12 +13,12 @@
     "@discordjs/rest": "^2.4.2",
     "@vitalets/google-translate-api": "^9.2.1",
     "axios": "^1.7.9",
-    "canvas": "^3.1.0",
     "discord-api-types": "^0.37.115",
     "discord.js": "^14.18.0",
     "dotenv": "^16.4.7",
     "node-cron": "^3.0.3",
     "openai": "^4.85.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "skia-canvas": "^2.0.2"
   }
 }
