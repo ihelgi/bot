@@ -1,6 +1,7 @@
-const sharp = require('sharp');
+const { createCanvas, registerFont } = require('canvas');
 const { AttachmentBuilder } = require('discord.js');
 
+// Non è necessario registrare un font personalizzato, basta usare uno di sistema come Arial
 async function generateTextImage(text) {
     const width = 500;
     const height = 100;
@@ -11,9 +12,9 @@ async function generateTextImage(text) {
     ctx.fillStyle = '#303030';
     ctx.fillRect(0, 0, width, height);
 
-    // Calcolare la larghezza del testo per adattarlo alla canvas
+    // Usare un font di sistema come Arial
     let fontSize = 50; // Impostiamo una dimensione di font iniziale
-    ctx.font = `${fontSize}px Inter`;
+    ctx.font = `${fontSize}px Arial`;  // Cambiato a Arial, font di sistema
 
     // Misurare la larghezza del testo
     let textWidth = ctx.measureText(text).width;
@@ -21,7 +22,7 @@ async function generateTextImage(text) {
     // Ridurre la dimensione del font finché il testo non si adatta alla canvas
     while (textWidth > width - 40) { // 40 per lasciare un po' di margine
         fontSize -= 2; // Ridurre la dimensione del font
-        ctx.font = `${fontSize}px Inter`;
+        ctx.font = `${fontSize}px Arial`;
         textWidth = ctx.measureText(text).width;
     }
 
@@ -36,7 +37,6 @@ async function generateTextImage(text) {
 
 async function handleCanvasCommand(message) {
     const text = message.content.slice(0, -2).trim(); // Rimuove gli ultimi due caratteri "()" dal messaggio
-    console.log('Testo ricevuto:', text);  // Aggiungi questa riga per il debug
     if (!text) {
         return message.reply('Il messaggio è vuoto! Scrivi qualcosa prima di `()`.');
     }
