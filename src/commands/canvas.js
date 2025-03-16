@@ -32,6 +32,7 @@ async function generateTextImage(text) {
 
 async function handleCanvasCommand(message) {
     const text = message.content.slice(0, -2).trim(); // Rimuove gli ultimi due caratteri "()" dal messaggio
+    console.log('Testo ricevuto:', text);  // Aggiungi questa riga per il debug
     if (!text) {
         return message.reply('Il messaggio è vuoto! Scrivi qualcosa prima di `()`.');
     }
