@@ -4,7 +4,7 @@ const { handleWeatherCommand } = require('./commands/weather');
 const { handleLatencyCommand } = require('./commands/latency');
 const { handleExchangeRateCommand } = require('./commands/currency');
 const { handleAICommand } = require('./commands/ai');
-const { handleCanvasCommand } = require('./commands/canvas');
+// const { handleCanvasCommand } = require('./commands/canvas');
 
 const client = new Client({
     intents: [
@@ -42,9 +42,9 @@ client.on('messageCreate', async (message) => {
         await handleExchangeRateCommand(message);
     }
 
-    if (message.content.endsWith('()')) {
-        await handleCanvasCommand(message);
-    }
+    //if (message.content.endsWith('()')) {
+    //    await handleCanvasCommand(message);
+    //}
 
     // Comando AI
     if (message.content.trim().endsWith('?')) {
